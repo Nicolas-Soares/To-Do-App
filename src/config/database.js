@@ -5,7 +5,7 @@ module.exports = {
     password: 't3f0x36583625',
     database: 'ToDoApp',
     define: {
-        timestamps: true,
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
     },
