@@ -4,9 +4,6 @@ module.exports = {
     async cadastrar(req, res) {
         const { username, email, password } = req.body
 
-        await User.destroy({
-            where: {}
-        })
         const user = await User.create({ username, email, password })
 
         return res.json(user)

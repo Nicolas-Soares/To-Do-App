@@ -1,11 +1,13 @@
 const express = require('express')
-const SignInController = require('./controllers/signInController')
+const signInController = require('./controllers/signInController')
+const loginController = require('./controllers/loginController')
 
 const routes = express.Router()
 
 routes.get('/', function(req, res) {
-    res.render('index')
+    res.render('index', { title: 'Login', css: ['indexStyle.css'] })
 })
-routes.post('/', SignInController.cadastrar)
+
+routes.post('/tasks', loginController.login)
 
 module.exports = routes
