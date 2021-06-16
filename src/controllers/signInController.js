@@ -1,11 +1,13 @@
 const User = require('../models/User')
 
 module.exports = {
-    async cadastrar(req, res) {
+    async signIn(req, res) {
         const { username, email, password } = req.body
 
-        const user = await User.create({ username, email, password })
+        let formatedUsername = username.replace(/\s+/g, ' ')
+        
+        await User.create({ username: formatedUsername , email, password })
 
-        return res.json(user)
+        return res.redirect('/')
     }
 }
