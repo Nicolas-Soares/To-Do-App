@@ -7,8 +7,7 @@ const {
 class Task extends Model {
   static init(sequelize) {
     super.init({
-      name: DataTypes.STRING,
-      description: DataTypes.STRING
+      name: DataTypes.STRING
     }, {
       sequelize
     })

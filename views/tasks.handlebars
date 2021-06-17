@@ -1,4 +1,14 @@
-<div id="task-list">
-    <h1>These are  your Tasks {{username}}</h1>
-    {{content}}
+<div id="main-area">
+    <div id="task-list">
+        <h1>These are your Tasks</h1>
+        <ul>
+            {{#each content}}
+                <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    </div>
+    <form method="POST">
+        <input type="text" name="name" id="taskname" placeholder="Task name...">
+        <button type="submit">+</button>
+    </form>
 </div>
