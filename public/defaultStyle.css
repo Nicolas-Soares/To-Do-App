@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
 body, html {
     display: flex;
@@ -8,7 +8,7 @@ body, html {
     background: linear-gradient(27deg, rgba(46,201,185,1) 0%, rgba(10,72,167,1) 100%);
     align-items: center;
     justify-content: center;
-    font-family: 'BalooTammudu2', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     flex-direction: column;
 }
 
@@ -40,4 +40,8 @@ a {
 a:hover {
     transition: 0.5s;
     color: rgb(40, 170, 116);
+}
+
+#homepage {
+    font-size: 45px;
 }
