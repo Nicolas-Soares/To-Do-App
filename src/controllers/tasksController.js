@@ -2,11 +2,9 @@ const User = require('../models/User')
 const Task = require('../models/Task')
 
 module.exports = {
-    async renderTasks(req, res) {
+    async renderTasks(user_id, res) {
         let taskList = []
-
-        const { user_id } = req.params
-        const task = await Task.findAll({
+        let task = await Task.findAll({
             where: { user_id: user_id }
         })
 
@@ -21,13 +19,8 @@ module.exports = {
         })
     },
 
-    async addTask(req, res) {
-        const { user_id } = req.params
-        const { name } = req.body
-
+    async addTask(user_id, name) {
         await Task.create({ user_id, name })
-
-        res.redirect(req.get('referer'))
     }
 }
 

@@ -24,7 +24,17 @@ routes.get('/create-account', function (req, res) {
 routes.post('/create-account', signInController.signIn)
 
 //TASKS -----
-routes.get('/tasks/:user_id', tasksController.renderTasks)
-routes.post('/tasks/:user_id', tasksController.addTask)
+routes.get('/tasks/:user_id', function(req, res) {
+    let { user_id } = req.params
+
+    tasksController.renderTasks(user_id, res)
+})
+routes.post('/tasks/:user_id', function (req, res) {
+    let { user_id } = req.params
+    let { name } = req.body
+
+    tasksController.addTask(user_id, name)
+    return res.redirect(req.get('referer'))
+})
 
 module.exports = routes
