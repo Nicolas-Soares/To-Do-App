@@ -2,25 +2,30 @@ const User = require('../models/User')
 const Task = require('../models/Task')
 
 module.exports = {
-    async renderTasks(user_id, res) {
-        let taskList = []
-        let task = await Task.findAll({
-            where: { user_id: user_id }
+    async renderTasks(req, res) {
+        const { user_id } = req.params
+        const taskList = []
+        const tasks = await Task.findAll({
+            where: { user_id }
+        })
+        
+        tasks.forEach(task => {
+            taskList.push(task.dataValues.name)
         })
 
-        for (let i in task) {
-            taskList[i] = task[i].dataValues.name
-        }
-
-        res.render('tasks', {
+        return res.render('tasks', {
             title: 'My Tasks',
-            //css: ['defaultStyle.css', 'tasksStyle.css'],
             content: taskList
         })
     },
 
-    async addTask(user_id, name) {
+    async addTask(req, res) {
+        const { user_id } = req.params
+        const { name } = req.body
+
         await Task.create({ user_id, name })
+
+        return res.redirect(req.get('referer'))
     }
 }
 
