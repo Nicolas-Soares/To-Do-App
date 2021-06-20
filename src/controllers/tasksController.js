@@ -8,7 +8,7 @@ module.exports = {
         const tasks = await Task.findAll({
             where: { user_id }
         })
-        
+
         tasks.forEach(task => {
             taskList.push(task.dataValues.name)
         })
@@ -23,9 +23,13 @@ module.exports = {
         const { user_id } = req.params
         const { name } = req.body
 
-        await Task.create({ user_id, name })
-
-        return res.redirect(req.get('referer'))
+        if (!name) {
+            console.log('Nome vazio')
+            return res.redirect(req.get('referer'))
+        } else {
+            await Task.create({ user_id, name })
+            return res.redirect(req.get('referer'))
+        }
     }
 }
 

@@ -1,62 +1,103 @@
-<div id="main-area">
-    <h1>These are your Tasks</h1>
-    <div id="task-list">
-        {{#each content}}
-        <li>{{this}}</li>
-        {{/each}}
-    </div>
     <form method="POST">
-        <input type="text" name="name" id="taskname" placeholder="Task name...">
+        <input type="text" name="name" id="taskname" placeholder="Task name..." autocomplete="off">
         <button type="submit">+</button>
     </form>
+<div id="main-area">
+    <div id="task-list">
+        {{#each content}}
+        <div id="eachSpan">
+            <span>{{this}}</span>
+            <input type="checkbox" name="checkbox" id="checkbox">
+        </div>
+        {{/each}}
+    </div>
 </div>
 <style>
+    #main-area {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 40%;
+        max-width: 40%;
+        height: 100%;
+        justify-content: center;
+    }
+
     #task-list {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
         list-style-type: none;
+        height: fit-content;
+        max-width: 100%;
+        min-width: 100%;
+        background: rgba(58, 53, 82, 0.555);
+        border-radius: 1ch;
     }
 
-    li {
+    #checkbox {
+        min-width: 30px;
+        min-height: 30px;
+        margin-bottom: 7px;
+    }
+
+    #eachSpan {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: nowrap;
+        min-width: 95%;
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+
+    span {
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 20px;
         font-weight: bold;
         text-align: center;
-        margin-bottom: 10px;
-        min-width: 100%;
+        min-width: 90%;
         height: 40px;
-        background: rgb(68, 194, 142);
+        background: rgb(62, 129, 238);
         cursor: pointer;
         transition: 0.5s;
         border-radius: 7pt;
+        flex-grow: 1;
     }
 
-    li:hover {
-        transition: 0.5s;
-        background: rgb(56, 161, 117);
-    }
-
-    #main-area {
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-width: 30%;
-        height: 100%;
-        justify-content: center;
-    }
-
-    #task-list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex-wrap: nowrap;
-        height: 100%;
-        min-width: 100%;
+    button {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        border-radius: 1ch;
+        width: 20%;
+        height: 45px;
+        border: none;
+        overflow: hidden;
+        outline: none;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
         background: rgb(58, 53, 82);
+        color: white;
+        margin-bottom: 5px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: fit-content;
+    }
+
+    input#taskname {
+        height: 40px;
+        width: 80%;
+        border-radius: 1ch;
+        margin-bottom: 6px;
+        font-size: 20px;
     }
 </style>
