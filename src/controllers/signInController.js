@@ -11,8 +11,8 @@ module.exports = {
                 return res.send('Inexistent or wrong email')
             }
 
-            let encryptedPassword = await bcrypt.hash(password, 5)
-            let formatedUsername = username.replace(/\s+/g, ' ')
+            const encryptedPassword = await bcrypt.hash(password, 5)
+            const formatedUsername = username.replace(/\s+/g, ' ')
 
             await User.create({ username: formatedUsername, email, password: encryptedPassword })
 

@@ -1,7 +1,13 @@
+<div id="form-area">
     <form method="POST">
         <input type="text" name="name" id="taskname" placeholder="Task name..." autocomplete="off">
-        <button type="submit">+</button>
+        <button type="submit">Add</button>
     </form>
+    <form action="/tasks/:user_id/delete" method="POST">
+        <input type="text" name="name" id="taskname" placeholder="Task name..." autocomplete="off">
+        <button type="submit">Delete</button>
+    </form>
+</div>
 <div id="main-area">
     <div id="task-list">
         {{#each content}}
@@ -22,6 +28,14 @@
         max-width: 40%;
         height: 100%;
         justify-content: center;
+    }
+
+    #form-area {
+        min-width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     #task-list {
@@ -72,7 +86,7 @@
         background-color: transparent;
         background-repeat: no-repeat;
         border-radius: 1ch;
-        width: 20%;
+        width: 30%;
         height: 45px;
         border: none;
         overflow: hidden;
@@ -91,11 +105,13 @@
         justify-content: center;
         align-items: center;
         height: fit-content;
+        min-width: 100%;
     }
 
     input#taskname {
         height: 40px;
-        width: 80%;
+        width: 70%;
+        flex-grow: 1;
         border-radius: 1ch;
         margin-bottom: 6px;
         font-size: 20px;

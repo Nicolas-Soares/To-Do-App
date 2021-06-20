@@ -11,13 +11,17 @@ module.exports = {
         })
 
         if (user) {
-            let hash = user.dataValues.password
+            const hash = user.dataValues.password
             compareResult = await bcrypt.compare(password, hash)
         }
 
         if (!user || compareResult !== true) {
-            console.log('User not found or wrong credentials')
+            return res.status(400),json({
+                status: 'fail',
+                message: 'User not found or wrong credentials'
+            })
         } else {
+            res.cookie('userId', user.dataValues.id)
             return res.redirect(`/tasks/${user.dataValues.id}`)
         }
     }
