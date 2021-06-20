@@ -7,7 +7,8 @@ const {
 class Task extends Model {
   static init(sequelize) {
     super.init({
-      name: DataTypes.STRING
+      name: DataTypes.STRING,
+      completed: DataTypes.BOOLEAN
     }, {
       sequelize
     })
