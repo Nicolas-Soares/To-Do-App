@@ -60,7 +60,7 @@ module.exports = {
     },
 
     async checkTask(req, res) {
-        
+        console.log(req)
     }
 }
 
