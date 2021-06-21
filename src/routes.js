@@ -28,5 +28,6 @@ routes.post('/create-account', signInController.signIn)
 routes.get('/tasks/:user_id', tasksController.renderTasks)
 routes.post('/tasks/:user_id', tasksController.addTask)
 routes.post('/tasks/:user_id/delete', tasksController.deleteTask)
+routes.post('/tasks/:user_id/check', tasksController.checkTask)
 
 module.exports = routes

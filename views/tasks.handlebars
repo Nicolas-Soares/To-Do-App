@@ -13,12 +13,37 @@
         {{#each content}}
         <div id="eachSpan">
             <span>{{this}}</span>
-            <input type="checkbox" name="checkbox" id="checkbox" {{checked}}>
+            <form action="/tasks/:user_id/check" method="post" id="form-check">
+                <button type="submit" id="btn-check">✔️</button>
+            </form>
         </div>
         {{/each}}
     </div>
 </div>
 <style>
+    #btn-check {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+        border: none;
+        overflow: hidden;
+        outline: none;
+        cursor: pointer;
+        font-size: 30px;
+        margin-top: 5px;
+    }
+
+    #form-check {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        max-width: 10%;
+        min-width: 10%;
+        height: 40px;
+    }
+
     #main-area {
         box-sizing: border-box;
         display: flex;
@@ -76,10 +101,15 @@
         min-width: 90%;
         height: 40px;
         background: rgb(62, 129, 238);
-        cursor: pointer;
         transition: 0.5s;
         border-radius: 7pt;
         flex-grow: 1;
+        transition: 0.5s;
+    }
+
+    span:hover {
+        transition: 0.5s;
+        background: rgb(50, 106, 196);
     }
 
     button {

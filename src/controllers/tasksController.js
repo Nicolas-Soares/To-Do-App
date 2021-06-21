@@ -5,25 +5,21 @@ module.exports = {
     async renderTasks(req, res) {
         const { user_id } = req.params
         const taskList = []
-        const checkList = []
         const tasks = await Task.findAll({
             where: { user_id }
         })
 
         tasks.forEach(task => {
             if (task.dataValues.completed === true) {
-                checkList.push('checked')
-                taskList.push(task.dataValues.name)
+                taskList.push(task.dataValues.name + ' (Completed)')
             } else {
-                checkList.push('')
                 taskList.push(task.dataValues.name)
             }
         })
 
         return res.render('tasks', {
             title: 'My Tasks',
-            content: taskList,
-            checked: checkList
+            content: taskList
         })
     },
 
@@ -61,6 +57,10 @@ module.exports = {
 
             return res.redirect(`/tasks/${user_id}`)
         }
+    },
+
+    async checkTask(req, res) {
+        
     }
 }
 
