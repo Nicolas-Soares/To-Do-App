@@ -11,8 +11,8 @@
             <form class="eachSpan" action="/tasks/:user_id/check" method="POST">
                 <button class="{{completed}}" type="submit" name="itemId" value="{{id}}">{{name}}</button>
             </form>
-            <form class="del-form" action="/tasks/:user_id/delete" method="post">
-                <button class="delId" type="submit" value="{{id}}">Del</button>
+            <form class="del-form" action="/tasks/:user_id/delete" method="POST">
+                <button class="delId" type="submit" name="itemToBeDeleted" value="{{id}}">Del</button>
             </form>
         </div>
         {{/each}}

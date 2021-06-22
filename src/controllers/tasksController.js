@@ -25,7 +25,7 @@ module.exports = {
             item.name = task.dataValues.name
             taskList.push(item)
         })
-        
+
         return res.render('tasks', {
             title: 'My Tasks',
             taskList
@@ -45,27 +45,15 @@ module.exports = {
     },
 
     async deleteTask(req, res) {
-        const { name } = req.body
-        const user_id = req.cookies.userId
+        const { itemToBeDeleted } = req.body
         const task = await Task.findOne({
             where: {
-                user_id,
-                name
+                id: itemToBeDeleted
             }
         })
 
-        if (!task) {
-            return res.redirect(`/tasks/${user_id}`)
-        } else {
-            const task_id = task.dataValues.id
-            await Task.destroy({
-                where: {
-                    id: task_id
-                }
-            })
-
-            return res.redirect(`/tasks/${user_id}`)
-        }
+        await task.destroy()
+        return res.redirect(req.get('referer'))
     },
 
     async checkTask(req, res) {
@@ -75,13 +63,13 @@ module.exports = {
                 id: itemId
             }
         })
-        
+
         if (task.completed === true) {
             task.completed = false
         } else {
             task.completed = true
         }
-        
+
         await task.save()
         return res.redirect(req.get('referer'))
     }
