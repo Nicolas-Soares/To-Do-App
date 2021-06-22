@@ -1,4 +1,3 @@
-const User = require('../models/User')
 const Task = require('../models/Task')
 
 module.exports = {
@@ -74,4 +73,3 @@ module.exports = {
         return res.redirect(req.get('referer'))
     }
 }
-
