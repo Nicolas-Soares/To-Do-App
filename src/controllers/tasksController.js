@@ -3,6 +3,14 @@ const Task = require('../models/Task')
 
 module.exports = {
     async renderTasks(req, res) {
+        function CreateItem() {
+            return {
+                id: null,
+                name: null,
+                completed: null
+            }
+        }
+
         const { user_id } = req.params
         const taskList = []
         const tasks = await Task.findAll({
@@ -10,16 +18,17 @@ module.exports = {
         })
 
         tasks.forEach(task => {
-            if (task.dataValues.completed === true) {
-                taskList.push(task.dataValues.name + ' (Completed)')
-            } else {
-                taskList.push(task.dataValues.name)
-            }
-        })
+            const item = new CreateItem()
 
+            item.id = task.dataValues.id
+            item.completed = task.dataValues.completed
+            item.name = task.dataValues.name
+            taskList.push(item)
+        })
+        
         return res.render('tasks', {
             title: 'My Tasks',
-            content: taskList
+            taskList
         })
     },
 
@@ -60,7 +69,21 @@ module.exports = {
     },
 
     async checkTask(req, res) {
-        console.log(req)
+        const { itemId } = req.body
+        const task = await Task.findOne({
+            where: {
+                id: itemId
+            }
+        })
+        
+        if (task.completed === true) {
+            task.completed = false
+        } else {
+            task.completed = true
+        }
+        
+        await task.save()
+        return res.redirect(req.get('referer'))
     }
 }
 
