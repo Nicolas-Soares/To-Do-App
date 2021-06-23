@@ -16,8 +16,8 @@ module.exports = {
         }
 
         if (!user || compareResult !== true) {
-            return res.status(400),json({
-                status: 'fail',
+            return res.status(400).json({
+                error: '400 Bad Request',
                 message: 'User not found or wrong credentials'
             })
         } else {

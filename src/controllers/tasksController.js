@@ -44,10 +44,10 @@ module.exports = {
     },
 
     async deleteTask(req, res) {
-        const { itemToBeDeleted } = req.body
+        const { itemId } = req.body
         const task = await Task.findOne({
             where: {
-                id: itemToBeDeleted
+                id: itemId
             }
         })
 
