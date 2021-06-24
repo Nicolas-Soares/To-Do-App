@@ -9,8 +9,7 @@ const routes = express.Router()
 routes.get('/', function (req, res) {
     res.cookie('userId', undefined)
     res.render('index', {
-        title: 'Login',
-        css: ['indexStyle.css', 'defaultStyle.css']
+        title: 'Login'
     })
 })
 routes.post('/', loginController.login)
@@ -18,8 +17,7 @@ routes.post('/', loginController.login)
 //CREATE ACCOUNT -----
 routes.get('/create-account', function (req, res) {
     res.render('signForm', {
-        title: 'Sign In',
-        css: ['defaultStyle.css', 'signFormStyle.css']
+        title: 'Sign In'
     })
 })
 routes.post('/create-account', signInController.signIn)
