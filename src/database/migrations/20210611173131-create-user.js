@@ -19,7 +19,17 @@ module.exports = {
       password: {
         type: Sequelize.STRING,
         allowNull: false
-      }
+      },
+      created_at: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('NOW()'),
+        allowNull: false
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('NOW()'),
+        allowNull: false
+      },
     }, {
       freezeTableName: true
     });

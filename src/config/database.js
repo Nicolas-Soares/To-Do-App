@@ -1,3 +1,4 @@
+require('dotenv').config()
 module.exports = {
     // dialect: 'postgres',
     // host: 'localhost',
@@ -10,10 +11,10 @@ module.exports = {
     //     underscored: true,
     // },
     dialect: 'postgres',
-    host: 'ec2-52-6-77-239.compute-1.amazonaws.com',
-    username: 'crwdttykteusle',
-    password: '5d445c5a7954f35c58f73c1f5475b776ff4f4022f4ec876e56aca3896b452aa8',
-    database: 'ddl0nnorqbf7hg',
+    host: process.env.DB_HOST,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
     define: {
         timestamps: true,
         freezeTableName: true,
@@ -21,7 +22,8 @@ module.exports = {
     },
     dialectOptions: {
         ssl: {
-            require: true, rejectUnauthorized: false
+            require: true,
+            rejectUnauthorized: false
         },
         keepAlive: true
     },

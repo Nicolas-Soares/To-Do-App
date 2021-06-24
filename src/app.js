@@ -3,10 +3,10 @@ const routes = require('./routes')
 const bodyParser = require('body-parser')
 const EXPHandlebars = require('express-handlebars')
 const cookieParser = require('cookie-parser')
+const app = express()
 
 require('./database')
-
-const app = express()
+require('dotenv').config()
 
 app.engine('handlebars', EXPHandlebars({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
@@ -21,4 +21,4 @@ app.use(bodyParser.urlencoded({
   }))
 app.use(routes)
 
-app.listen(process.env.PORT || 3000, () => console.log('Server running on port 3000'))
+app.listen(process.env.PORT || 3000, () => console.log('Server running'))
