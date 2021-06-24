@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser')
 const app = express()
 
 require('./database')
-require('dotenv').config()
 
 app.engine('handlebars', EXPHandlebars({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
