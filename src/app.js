@@ -3,10 +3,16 @@ const routes = require('./routes')
 const bodyParser = require('body-parser')
 const EXPHandlebars = require('express-handlebars')
 const cookieParser = require('cookie-parser')
+const { config } = require('dotenv')
+const { join } = require('path')
 const app = express()
 
 require('./database')
-require('dotenv').config()
+
+const configPath = join(__dirname, '../', '.env.prod')
+config({
+  path: configPath
+})
 
 app.engine('handlebars', EXPHandlebars({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
